@@ -1,0 +1,36 @@
+<%- model_class = Vote -%>
+<div class="page-header">
+  <h1>Unterst&uuml;tzungserkl&auml;rungen</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Anzahl</th>
+      <th>Bezirk</th>
+      <th>Eingetragen am</th>
+      <th>Aktionen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @votes.each do |vote| %>
+      <tr>
+        <td><%= vote.count %></td>
+        <td><%= vote.district.name %></td>
+        <td><%= vote.created_at.to_formatted_s(:short) %></td>
+        <td>
+          <%= link_to "Editieren",
+                      edit_vote_path(vote), :class => 'btn btn-mini' %>
+          <%= link_to "Löschen",
+                      vote_path(vote),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => "Sind Sie sicher das Sie diesen Eintrag löschen möchten?") },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_vote_path,
+            :class => 'btn btn-primary' %>
