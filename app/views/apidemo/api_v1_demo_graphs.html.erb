@@ -1,0 +1,65 @@
+<h2>Pie Chart Type 1 (2d)</h2>
+<div class="row">
+  <% ElectionCounter::Graph.build_graph_pie_type1.each do |graph| %>
+    <div class="span3"><%= image_tag(graph) %></div>
+  <% end %>
+</div>
+<br />
+<p>
+  <p>Returns an Array where each Entry represents the data of one Votedistrict.</p>
+  <p>API: <code>/api/v1/graph/pie/type1</code></p>
+  <p>Sample Output:
+<pre>[
+  "http://chart.apis.google.com/chart?chco=...",
+  "http://chart.apis.google.com/chart?chco=...",
+  ...
+]</pre><p>
+</p>
+<hr style="widht:100%; border:1px solid black;">
+
+<h2>Pie Chart Type 2 (3d)</h2>
+<div class="row">
+  <% ElectionCounter::Graph.build_graph_pie_type2.each do |graph| %>
+    <div class="span3"><%= image_tag(graph) %></div>
+  <% end %>
+</div>
+<br />
+<p>
+  <p>Returns an Array where each Entry represents the data of one Votedistrict.</p>
+  <p>API: <code>/api/v1/graph/pie/type2</code></p>
+  <p>Sample Output:
+<pre>[
+  "http://chart.apis.google.com/chart?chco=...",
+  "http://chart.apis.google.com/chart?chco=...",
+  ...
+]</pre><p>
+</p>
+<hr style="widht:100%; border:1px solid black;">
+
+<h2>Bar Chart Type 1 - Vertical</h2>
+<div class="row">
+  <div class="span9 offset4"><%= image_tag(ElectionCounter::Graph.build_graph_bar_type1) %></div>
+</div>
+<br />
+<p>
+  <p>Returns a link to the graph containing all votes per votedistrict </p>
+  <p>API: <code>/api/v1/graph/bar/type1</code></p>
+  <p>Sample Output:
+    <pre>http://chart.apis.google.com/chart?chco=...</pre>
+  </p>
+</p>
+<hr style="widht:100%; border:1px solid black;">
+
+<h2>Bar Chart Type 2 - Horizontal</h2>
+<div class="row">
+  <div class="span9 offset4"><%= image_tag(ElectionCounter::Graph.build_graph_bar_type2) %></div>
+</div>
+<br />
+<p>
+  <p>Returns a link to the graph containing all votes per votedistrict </p>
+  <p>API: <code>/api/v1/graph/bar/type2</code></p>
+  <p>Sample Output:
+    <pre>http://chart.apis.google.com/chart?chco=...</pre>
+  </p>
+</p>
+<hr style="widht:100%; border:1px solid black;">

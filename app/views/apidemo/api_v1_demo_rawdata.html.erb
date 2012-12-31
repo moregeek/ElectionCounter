@@ -1,0 +1,70 @@
+<h2>Votedistricts</h2>
+<p>
+  <p>Returns an array with votedistricts, the reached votes and the districts belonging to them.</p>
+  <p>API: <code>/api/v1/rawdata/votedistricts</code></p>
+  <p>Sample Output:
+<pre>
+[
+  {
+    "name":"Klagenfurt",
+
+    "votes": {
+      "required":100,
+      "reached":68
+    },
+
+    "districts": [
+      "Klagenfurt am Woerthersee",
+      "Klagenfurt Land"
+    ]
+  },
+
+  {
+    "name":"Kaernten Ost",
+
+    "votes": {
+      "required":100,
+      "reached":56
+    },
+
+    "districts":
+      [
+        "Sankt Veit an der Glan",
+        "Voelkermark",
+        "Wolfsberg"
+      ]
+  },
+
+  ...
+
+]
+</pre><p>
+</p>
+<hr style="widht:100%; border:1px solid black;">
+
+<h2>Districts</h2>
+<p>
+  <p>Returns an Array with all districts and the reached votes in this district</p>
+  <p>API: <code>/api/v1/rawdata/districts</code></p>
+  <p>Sample Output:
+<pre>
+[
+  {
+    "name":"Klagenfurt am Woerthersee",
+    "votes":68
+  },
+
+  {
+    "name":"Klagenfurt Land",
+    "votes":0
+  },
+
+  {
+    "name":"Sankt Veit an der Glan",
+    "votes":0
+  },
+
+  ...
+]</pre><p>
+</p>
+<hr style="widht:100%; border:1px solid black;">
