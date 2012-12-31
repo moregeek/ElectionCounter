@@ -1,58 +1,107 @@
 ElectionCounter::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  ActiveAdmin.routes(self)
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  devise_for :users
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+#  devise_for :users
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+#  ActiveAdmin.routes(self)
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+#  devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  # Admin Stuff
+  ################################################################################
+  #resources :admin do
+  #  resources :users
+  #  resources :votes
+  #  resources :votedistricts
+  #end
 
-  # See how all your routes lay out with "rake routes"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+#  devise_for :users
+
+
+
+=begin
+  devise_for  :users, :path => "",
+              :path_names => {  :sign_in => 'login', 
+                                :sign_out => 'logout', 
+                                :password => 'secret', 
+                                :confirmation => 'verification', 
+                                :unlock => 'unblock', 
+                                :registration => 'register', 
+                                :sign_up => 'cmon_let_me_in'
+                             }
+=end
+  resources :votes
+
+  # Routes for API Demo
+  ################################################################################
+  namespace :apidemo, :only => [] do
+    get :graph, :to => :api_v1_demo_graphs
+    get :rawdata, :to => :api_v1_demo_rawdata
+  end
+
+  # API Namespace
+  ################################################################################
+  namespace :api, defaults: {format: 'json'} do
+    # Version 1 of API
+    namespace :v1 do
+
+      ################################################################################
+      #
+      #  All Responses bellow this point returns a collection of Data in JSON Format
+      #
+      # GET   /api/v1/rawdata/votedistricts
+      # GET   /api/v1/rawdata/districts
+      # 
+      resources :rawdata, :only => [] do
+        collection do
+          get 'votedistricts'
+          get 'districts'
+        end # collection
+      end # resources
+
+      ################################################################################
+      #
+      #       All Responses bellow this point return one or multiple HTTP Links
+      #                   which can be included directly as image
+      #
+      # GET    /api/v1/graph/pie/type1/:resolution
+      # GET    /api/v1/graph/pie/type1/
+      #
+      # GET    /api/v1/graph/bar/type1/:resolution
+      # GET    /api/v1/graph/bar/type1/
+      #
+      # GET    /api/v1/graph/bar/type2/:resolution
+      # GET    /api/v1/graph/bar/type2/
+      #
+      resources :graph, :only => [] do
+        collection do
+          # Bar Charts
+          namespace :bar do
+            get 'type1/:resolution/', :controller => :graphs, :action => :graph_bar_t1      # optional with resolution
+            get 'type1/', :controller => :graphs, :action => :graph_bar_t1
+          end
+          # Pie Charts
+          namespace :pie do
+            get 'type1/:resolution', :controller => :graphs, :action => :graph_pie_type1    # optional with resolution
+            get 'type1/', :controller => :graphs, :action => :graph_pie_type1
+
+            get 'type2/:resolution/', :controller => :graphs, :action => :graph_pie_type2   # optional with resolution
+            get 'type2/', :controller => :graphs, :action => :graph_pie_type2
+          end 
+        end # collection 
+      end # graph
+      ################################################################################
+
+    end # v1
+  end # api
+
+  root :to => "votes#index"
+
 end
