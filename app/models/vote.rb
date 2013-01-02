@@ -1,5 +1,5 @@
 class Vote < ActiveRecord::Base
-  attr_accessible :count, :district_id
+  attr_accessible :count, :district_id, :user_id
 
   belongs_to :user
   belongs_to :district

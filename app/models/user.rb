@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :approved
   # attr_accessible :title, :body
 
+  scope :not_approved, where(:approved => false)
+
+  has_many :votes
+
   def active_for_authentication? 
     super && approved? 
   end 
