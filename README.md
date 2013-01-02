@@ -1,4 +1,4 @@
-Election Counter
+Election Counter [![Dependency Status](https://gemnasium.com/moregeek/ElectionCounter.png)](https://gemnasium.com/moregeek/ElectionCounter) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/moregeek/ElectionCounter)
 ================
 
 Developer Pre Release do not use in production!
