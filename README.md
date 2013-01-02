@@ -51,6 +51,12 @@ Note:
 
 User have to register themself on the entry page and a Admin has to approve them.
 
+Deployment to Heroku
+--------------------
+
+To deploy this app to Heroku follow the steps listed on the following link:
+https://toolbelt.heroku.com/
+
 TODO
 ====
 

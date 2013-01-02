@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20121231033321) do
   create_table "votes", :force => true do |t|
     t.integer  "count",       :null => false
     t.integer  "district_id", :null => false
-    t.integer  "users_id",    :null => false
+    t.integer  "user_id",     :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
