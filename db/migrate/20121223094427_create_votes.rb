@@ -3,7 +3,7 @@ class CreateVotes < ActiveRecord::Migration
     create_table :votes do |t|
       t.integer :count, :null => false
       t.references :district, :null => false
-      t.references :users, :null => false
+      t.references :user, :null => false
       t.timestamps
     end
   end
