@@ -14,4 +14,8 @@
 /log/*.log
 /tmp
 
+# Ignore vi(m) swp files
 .*.swp
+
+# other
+config/database.yml
