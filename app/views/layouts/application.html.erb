@@ -55,7 +55,6 @@
                   <li><%= link_to "Rohdaten", apidemo_rawdata_path %></li>
                 </ul>
               </li>              
-              <li><%= link_to "Admin", "/admin/"  %></li>
 
               <% if user_signed_in? %>
                 <li><%=  link_to "Ausloggen", destroy_user_session_path, :method => :delete %></li>
@@ -97,6 +96,8 @@
         </div><!--/row-->
 
       <footer>
+
+              <li><%= link_to "Admin", "/admin/"  %></li>
       </footer>
 
     </div> <!-- /container -->
