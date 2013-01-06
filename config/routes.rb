@@ -1,42 +1,10 @@
 ElectionCounter::Application.routes.draw do
 
-
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
-  devise_for :users
-
-#  devise_for :users
-
-#  ActiveAdmin.routes(self)
-
-#  devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
-
-  # Admin Stuff
-  ################################################################################
-  #resources :admin do
-  #  resources :users
-  #  resources :votes
-  #  resources :votedistricts
-  #end
-
-
-#  devise_for :users
-
-
-
-=begin
-  devise_for  :users, :path => "",
-              :path_names => {  :sign_in => 'login', 
-                                :sign_out => 'logout', 
-                                :password => 'secret', 
-                                :confirmation => 'verification', 
-                                :unlock => 'unblock', 
-                                :registration => 'register', 
-                                :sign_up => 'cmon_let_me_in'
-                             }
-=end
   resources :votes
 
   # Routes for API Demo
@@ -102,6 +70,6 @@ ElectionCounter::Application.routes.draw do
     end # v1
   end # api
 
-  root :to => "votes#index"
+  root :to => "apidemo#api_v1_demo_graphs"
 
 end

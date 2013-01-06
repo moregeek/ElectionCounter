@@ -47,16 +47,16 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <li class="brand">ElectionCounter</li>
-              <li><%= link_to "Unterstützungserklärungen", "/votes"  %></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Graphen", apidemo_graph_path %></li>
                   <li><%= link_to "Rohdaten", apidemo_rawdata_path %></li>
                 </ul>
-              </li>              
-
+              </li>
               <% if user_signed_in? %>
+                <li><%= link_to "Unterstützungserklärungen", "/votes"  %></li>
+                <li><%= link_to "Admin", "/admin/"  %></li>
                 <li><%=  link_to "Ausloggen", destroy_user_session_path, :method => :delete %></li>
               <% else %>
                 <li><%=  link_to "Einloggen ", new_user_session_path %></li>
@@ -96,8 +96,6 @@
         </div><!--/row-->
 
       <footer>
-
-              <li><%= link_to "Admin", "/admin/"  %></li>
       </footer>
 
     </div> <!-- /container -->
