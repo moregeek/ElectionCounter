@@ -19,3 +19,6 @@
 
 # other
 config/database.yml
+.rvmrc
+bin/
+public/assets/
