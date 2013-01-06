@@ -59,9 +59,15 @@
                 <li><%= link_to "Admin", "/admin/"  %></li>
                 <li><%=  link_to "Ausloggen", destroy_user_session_path, :method => :delete %></li>
               <% else %>
-                <li><%=  link_to "Einloggen ", new_user_session_path %></li>
+                <li><%=  link_to "Einloggen", new_user_session_path %></li>
+                <li><%=  link_to "Registrieren", new_user_registration_path %></li>
               <% end %>
+            </ul>
 
+            <ul class="nav pull-right">
+              <li>
+                <a href="https://github.com/moregeek/ElectionCounter/issues">Fehler gefunden?</a>
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
