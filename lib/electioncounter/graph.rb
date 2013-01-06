@@ -34,10 +34,10 @@ module ElectionCounter
       def build_graph_bar_type1(options ={})
         vd = Votedistrict.all
         data = Gchart.bar(:data => vd.map {|i| i.votes_reached},
-                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : "400x250"),
+                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : (vd.count * 45 + 150).to_s + "x250"),
                           :max_value => 100, # axis heigh
                           :axis_with_labels => ['x','y'], # axis: bottom, left
-                          :axis_labels => [ [ 1, 2, 3, 4], [1,50,100] ],
+                          :axis_labels => [ vd.map(&:id), [1,50,100] ],
                           :bar_colors => '4c2582',
                           :bar_width_and_spacing => [ 30, 15], # width of bar and spacing between bars
                           :legend => vd.map.with_index {|value,index| "#{index+1} #{value.name}"} )
@@ -50,10 +50,10 @@ module ElectionCounter
       def build_graph_bar_type2(options ={})
         vd = Votedistrict.all
         data = Gchart.bar(:data => vd.map {|i| i.votes_reached},
-                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : "400x250"),
+                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : (vd.count * 45 + 150).to_s + "x250"),
                           :max_value => 100, # axis heigh
                           :axis_with_labels => ['y','x'], # axis: bottom, left
-                          :axis_labels => [ [ 1, 2, 3, 4], [1,50,100] ],
+                          :axis_labels => [ vd.map(&:id), [1,50,100] ],
                           :bar_colors => '4c2582',
                           :horizontal => true,
                           :bar_width_and_spacing => [ 30, 15], # width of bar and spacing between bars
