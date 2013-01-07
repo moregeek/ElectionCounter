@@ -18,6 +18,23 @@ validates_uniqueness_of :name, :case_sensitive => false
     self.votes_required / 100 * self.votes_reached
   end
 
+  #
+  # returns the number of votes which are needed to reach the goal
+  #
+  def votes_left
+    res = votes_required - votes_reached
+    res = res < 0 ? 0 : res
+    res
+  end
+
+  #
+  # returns the percent of votes which are needed to reach the goal
+  #
+  def votes_left_percent
+    #votes_left = self.votes_required / 100 * votes_left
+    votes_required / 100 * votes_left
+  end
+
   class << self
 
     # returns: number of votes needed for all votedistricts
@@ -35,5 +52,6 @@ validates_uniqueness_of :name, :case_sensitive => false
     def total_votes_reached_relative
       self.total_votes_reached
     end
+
   end
 end

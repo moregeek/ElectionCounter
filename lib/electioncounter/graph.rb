@@ -9,8 +9,8 @@ module ElectionCounter
         Votedistrict.all.map do |vote_district|
           Gchart.pie( :data => [ vote_district.votes_reached, (vote_district.votes_required - vote_district.votes_reached) ],
                       :title => vote_district.name,
-                      :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : "300x200"),
-                      :labels => ["Erhalten", "Offen"],
+                      :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : "350x200"),
+                      :labels => ["Erhalten ( #{vote_district.votes_reached} )", "Offen ( #{vote_district.votes_left} )"],
                       :line_color => '4c2582'  )
         end
       end
@@ -22,8 +22,8 @@ module ElectionCounter
         Votedistrict.all.map do |vote_district|
           Gchart.pie_3d(  :data => [ vote_district.votes_reached, (vote_district.votes_required - vote_district.votes_reached) ],
                           :title => vote_district.name,
-                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : "300x150"),
-                          :labels => ["Erhalten", "Offen"],
+                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : "350x150"),
+                          :labels => ["Erhalten ( #{vote_district.votes_reached} )", "Offen ( #{vote_district.votes_left} )"],
                           :line_color => '4c2582'  )
         end
       end
@@ -40,7 +40,7 @@ module ElectionCounter
                           :axis_labels => [ vd.map(&:id), [1,50,100] ],
                           :bar_colors => '4c2582',
                           :bar_width_and_spacing => [ 30, 15], # width of bar and spacing between bars
-                          :legend => vd.map.with_index {|value,index| "#{index+1} #{value.name}"} )
+                          :legend => vd.map.with_index {|value,index| "#{index+1} #{value.name} ( #{value.votes_reached} )"} )
         data
       end
 
@@ -57,7 +57,7 @@ module ElectionCounter
                           :bar_colors => '4c2582',
                           :horizontal => true,
                           :bar_width_and_spacing => [ 30, 15], # width of bar and spacing between bars
-                          :legend => vd.map.with_index {|value,index| "#{index+1} #{value.name}"} )
+                          :legend => vd.map.with_index {|value,index| "#{index+1} #{value.name} ( #{value.votes_reached} )"} )
         data
       end
 
