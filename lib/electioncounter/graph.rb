@@ -53,7 +53,7 @@ module ElectionCounter
                           :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : (vd.count * 45 + 150).to_s + "x250"),
                           :max_value => 100, # axis heigh
                           :axis_with_labels => ['y','x'], # axis: bottom, left
-                          :axis_labels => [ vd.map(&:id), [1,50,100] ],
+                          :axis_labels => [ vd.map(&:id).reverse, [1,50,100] ],
                           :bar_colors => '4c2582',
                           :horizontal => true,
                           :bar_width_and_spacing => [ 30, 15], # width of bar and spacing between bars
