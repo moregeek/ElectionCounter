@@ -2,6 +2,7 @@ module Api
   module V1
     class RawdataController < ApplicationController
 
+      before_filter :set_access
       respond_to :json
 
       # GET   api/v1/rawdata/votedistricts
@@ -32,6 +33,12 @@ module Api
           end
         end
         respond_with data
+      end
+
+      protected
+
+      def set_access
+        headers['Access-Control-Allow-Origin'] = "*"
       end
 
     end # Class
