@@ -34,7 +34,7 @@ module ElectionCounter
       def build_graph_bar_type1(options ={})
         vd = Votedistrict.all
         data = Gchart.bar(:data => vd.map {|i| i.votes_reached},
-                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : (vd.count * 45 + 150).to_s + "x250"),
+                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : (vd.count * 45 + 160).to_s + "x250"),
                           :max_value => 100, # axis heigh
                           :axis_with_labels => ['x','y'], # axis: bottom, left
                           :axis_labels => [ vd.map(&:id), [1,50,100] ],
@@ -50,7 +50,7 @@ module ElectionCounter
       def build_graph_bar_type2(options ={})
         vd = Votedistrict.all
         data = Gchart.bar(:data => vd.map {|i| i.votes_reached},
-                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : (vd.count * 45 + 150).to_s + "x250"),
+                          :size => (valid_resolution?(options[:resolution]) ? options[:resolution] : (vd.count * 45 + 160).to_s + "x250"),
                           :max_value => 100, # axis heigh
                           :axis_with_labels => ['y','x'], # axis: bottom, left
                           :axis_labels => [ vd.map(&:id).reverse, [1,50,100] ],
